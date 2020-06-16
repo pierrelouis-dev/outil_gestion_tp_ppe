@@ -51,22 +51,40 @@
                 </div>
                     </div>
                         </div>
-                
+                    
+
+
                          <?php 
                             try
                             {
                         if(isset($_POST["inscription"]))
                             {
-                 $base = new PDO('mysql:host=localhost; dbname=ppe_projet', 'root', 'root');
+
+                 $base = new PDO('mysql:host=localhost; dbname=outil_gestion_ppe', 'root', 'root');
+                 $role = ($_POST['role']); 
+                 if ($role == "eleve") {
+
+
                   $login = ($_POST ['login']); 
                     $mdp = md5($_POST ['mdp']); 
                     $nom = ($_POST ['nom']); 
                     $prenom = ($_POST ['prenom']); 
                     $option = ($_POST ['option']); 
-                    $requete=$base->prepare('INSERT INTO eleve (login, mdp, nom_e, prenom_e, option_e, verif ) VALUES (?,?,?,?,?,0)');
+                    $requete=$base->prepare('INSERT INTO eleve (login, mdp, nom_e, prenom_e, option_e, statut_inscription) VALUES (?,?,?,?,?,0)');
                     $requete->execute(array($login, $mdp, $nom, $prenom, $option));
                 $base=null;
-                    
+               }    
+                $role = ($_POST['role']); 
+                 if ($role == "prof"){ 
+
+                   $login = ($_POST ['login']); 
+                    $mdp = md5($_POST ['mdp']); 
+                    $nom = ($_POST ['nom']); 
+                    $prenom = ($_POST ['prenom']); 
+                    $requete_prof=$base->prepare('INSERT INTO prof (login, mdp, nom_p, prenom_p, statut_inscription ) VALUES (?,?,?,?,0)');
+                    $requete_prof->execute(array($login, $mdp, $nom, $prenom));
+                $base=null;
+               }  
             } 
         }
     catch (PDOException $e) {

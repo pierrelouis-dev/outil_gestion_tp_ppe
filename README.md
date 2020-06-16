@@ -8,4 +8,3 @@ git add nomdufichier ou * /* permet d'ajouter un fichier ou tout les fichiers av
 git commit m "" /* prend une "image" du ou des fichiers */
 git branch nombranche /* permet de creer une branche */
 git branch /* Lister des branches ll*/
-git push origin nom de la branche

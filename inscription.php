@@ -10,15 +10,14 @@
 	<div>
 	<?php 
     session_start();
-    include('function.php');
-    neweleve();
+    #include('function.php');
+    #neweleve();
 	?>
-
-	<!--Début formulaire-->
-	<form method="POST" action="" enctype="multipart/form-data">
         <div class="col-12 form-co">
 		<!--INPUT NOM-->
                 <div class="champs-co">
+                    <!--Début formulaire-->
+                    <form method="POST" action="inscription.php" enctype="multipart/form-data">
                     <span class="login-title">Inscription</span>
                         <table>
                             <!--INPUT Nom-->
@@ -27,64 +26,55 @@
                             <!--INPUT Prénom-->
                             <label>Prénom</label>
                             <input type="text" name="prenom" class="champs champs-prenom-co" id="prenom">
-                            <!--INPUT Classe-->
-                            <label>Classe</label>
-                            <input type="text" name="classe" class="champs champs-classe" id="classe">
-                            <!--INPUT option-->
-                            <label>Option</label>
-                            <input type="text" name="option" class="champs champs-option" id="option">
+                            <!--INPUT login -->
+                            <label>Login</label>
+                            <input type="login" name="login" class="champs champs-login" id="login">
                             <!--INPUT MPD -->
                             <label>Mot de passe</label>
                             <input type="password" name="mdp" class="champs champs-mdp" id="mdp">
-                            <!--INPUT MPD-2 -->
-                            <label> Confirmation du mot de passe</label>
-                            <input type="password" name="mdp2" class="champs champs-mdp" id="mdp2">
+                            <!--INPUT option-->
+                            <label>Option</label>
+                            <input type="text" name="option" class="champs champs-option" id="option">
                             <!--INPUT photo-->
                             <label>photo de profil</label>
                             <input type="file" name="avatar" class="champs champs-avatar" id="avatar">
                             <!--Statut inscription-->
                             <label>Prof</label>
                             <input type="checkbox" name="statut_prof" class="champs champs-statut" id="statut">
+        
                             <label>Eleve</label>
                             <input type="checkbox" name="statut_eleve" class="champs champs-statut" id="statut">
                         </table>
-
-                        <input type="submit" name="btn-inscrition" value="S'inscrire" class="btn-connecter">
+                        <input type="submit" name="inscription" value="S'inscrire" class="btn-connecter">
                        <!-- <input type="submit" name="subconnect" value="Connexion">-->
-                    <a href="connexion.php">Vous connecter </a>
-                    <div class="error inscription">
-                        <?php
-                        if (isset($erreur))
-                        {
-                            echo $erreur;
-                        }
-
-                        ?>
-                    </div>
-
-
+                        <a href="connexion.php">Vous connecter </a>
+                        <div class="error inscription">
+                    </form>
                 </div>
-        </div>
-	</form>
-	
-		<?php
-        if (isset($_POST["subconnect"]))
-        {
-            header('Location : connexion.php');
+                    </div>
+                        </div>
+                
+                         <?php 
+                            try
+                            {
+                        if(isset($_POST["inscription"]))
+                            {
+                 $base = new PDO('mysql:host=localhost; dbname=ppe_projet', 'root', 'root');
+                  $login = ($_POST ['login']); 
+                    $mdp = md5($_POST ['mdp']); 
+                    $nom = ($_POST ['nom']); 
+                    $prenom = ($_POST ['prenom']); 
+                    $option = ($_POST ['option']); 
+                    $requete=$base->prepare('INSERT INTO eleve (login, mdp, nom_e, prenom_e, option_e, verif ) VALUES (?,?,?,?,?,0)');
+                    $requete->execute(array($login, $mdp, $nom, $prenom, $option));
+                $base=null;
+                    
+            } 
         }
-		/*Afficher la valeur de erreur si la variable erreur existe*/
-        ?>
-        <div class="error">
-        <?php
-			if (isset($erreur))
-			{
-				echo $erreur;
-			}
-
-		?>
-        </div>
-</div>
-
-
+    catch (PDOException $e) {
+      echo 'Échec lors de la connexion : ' . $e->getMessage();
+      return false;
+    }
+  ?>
 </body>
 </html>

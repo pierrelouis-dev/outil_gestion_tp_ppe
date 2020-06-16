@@ -38,12 +38,10 @@
                             <!--INPUT photo-->
                             <label>photo de profil</label>
                             <input type="file" name="avatar" class="champs champs-avatar" id="avatar">
-                            <!--Statut inscription-->
-                            <label>Prof</label>
-                            <input type="checkbox" name="statut_prof" class="champs champs-statut" id="statut">
-        
-                            <label>Eleve</label>
-                            <input type="checkbox" name="statut_eleve" class="champs champs-statut" id="statut">
+                            <select name="role">
+                            <option value="eleve">Eleve</option>
+                            <option value="prof">Prof</option>
+                        </select>
                         </table>
                         <input type="submit" name="inscription" value="S'inscrire" class="btn-connecter">
                        <!-- <input type="submit" name="subconnect" value="Connexion">-->

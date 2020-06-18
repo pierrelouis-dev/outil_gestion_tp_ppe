@@ -34,6 +34,8 @@ if  (isset($_POST['btn_creer'])  Or isset($_POST['btn_brouillon'])){
         $inserttp = $bdd->prepare("INSERT INTO tp (libelle_tp,  desc_tp, dte_deb, dte_fin, publier, Option_tp) VALUES (?,?,?,?,1,?)");
         $inserttp->execute(array($titre_tp,$desc_tp_ck,$dte_start, $dte_end,$select_option));
         
+        header('Location: edition.php?id='.$bdd->lastinsertid());
+        
     }
     else{
         $erreur = "Vous devez remplir tous les champs ";

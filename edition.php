@@ -16,6 +16,16 @@ $bdd = new PDO('mysql:host=127.0.0.1;dbname=outils_geestion_tp_ppe','root',''); 
     if ($_SESSION["role"] == "eleve") {
       header("Location: mes_tp.php");
     }
+
+    $id = $_REQUEST['id'];
+
+    $sql = 'SELECT * FROM tp WHERE id_tp = :id';
+    $req = $bdd->prepare($sql);
+    
+    $req->bindParam('id', $id);
+    $req->execute();
+    $result = $req->fetch(PDO::FETCH_ASSOC);
+
 ?>
 <?php 
 
@@ -66,15 +76,15 @@ if  (isset($_POST['btn_creer'])  Or isset($_POST['btn_brouillon'])){
                                 <div class="first_form">
                                   <div class="title_tp">
                                         <label>Titre du TP</label>
-                                        <input type="text" name="titre_tp" class="champs champs-titre-tp" id="titre_tp">
+                                        <input type="text" name="titre_tp" class="champs champs-titre-tp" id="titre_tp" value="<?= $result['libelle_tp'] ?>">
                                    </div>
                                    <!--INPUT promo-->
                                    <div class="div_promo">
                                       <label for="label_promo">Séléction de la promotion</label>
-                                      <select name="select_promo" id="select_promo">
+                                      <select name="select_promo" id="select_promo">    
                                           <option value="">Promotions</option>
-                                          <option value="sio_1">Sio 1</option>
-                                          <option value="sio_2">Sio 2</option>
+                                          <option value="sio_1" <?= ($result['Option_tp'] === 'sio_1')? 'selected' : ''; ?>>Sio 1</option>
+                                          <option value="sio_2" <?= ($result['Option_tp'] === 'sio_2')? 'selected' : ''; ?>>Sio 2</option>
                                       </select>
                                     </div>
                                     <!--INPUT option-->
@@ -82,24 +92,24 @@ if  (isset($_POST['btn_creer'])  Or isset($_POST['btn_brouillon'])){
                                       <label for="label_option">Séléction de l'option</label>
                                       <select name="select_option" id="select_option">
                                           <option value="">Options</option>
-                                          <option value="slam">SLAM</option>
-                                          <option value="sisr">SISR</option>
+                                          <option value="slam"  <?= ($result['Option_tp'] === 'slam')? 'selected' : ''; ?> >SLAM</option>
+                                          <option value="sisr"  <?= ($result['Option_tp'] === 'sisr')? 'selected' : ''; ?> >SISR</option>
                                       </select>
                                      </div>
                                        <div class="date-form">
                                          <div class="date_start">
                                                 <label class="label_start" for="start">Date de début</label>
-                                                <input type="date" id="start" name="dte_start" value="2020-05-14" min="2020-01-01" max="2020-12-31">
+                                                <input type="date" id="start" name="dte_start" min="2020-01-01" max="2020-12-31" value="<?= explode(' ', $result['dte_deb'])[0] ?>">
                                         </div>
                                         <div class="date_end">
                                           <label for="start">Date de fin</label>
-                                          <input type="date" id="label_end" name="dte_end" value="2020-05-14" min="2020-01-01" max="2020-12-31">
+                                          <input type="date" id="label_end" name="dte_end" min="2020-01-01" max="2020-12-31" value="<?= explode(' ', $result['dte_fin'])[0] ?>">
                                         </div>
                                     </div>
                                   </div>
                                </table>
 
-                               <textarea name="desc_tp_ck" id="editor1" rows="10" cols="80"></textarea>
+                               <textarea name="desc_tp_ck" id="editor1" rows="10" cols="80"><?= $result['desc_tp'] ?></textarea>
                                 <script>
                                     // Replace the <textarea id="editor1"> with a CKEditor 4
                                     // instance, using default configuration.

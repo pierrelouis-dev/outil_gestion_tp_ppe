@@ -19,7 +19,7 @@ $bdd = new PDO('mysql:host=127.0.0.1;dbname=outils_geestion_tp_ppe','root',''); 
 ?>
 <?php 
 
-if  (isset($_POST['btn_creer'])){
+if  (isset($_POST['btn_creer'])  Or isset($_POST['btn_brouillon'])){
 
     if (!empty($_POST['titre_tp'])  && !empty($_POST['select_promo'])  && !empty($_POST['select_option'])  && !empty($_POST['dte_start'])  && !empty($_POST['dte_end'])  && !empty($_POST['desc_tp_ck'])) {
 
@@ -31,18 +31,13 @@ if  (isset($_POST['btn_creer'])){
         $desc_tp_ck = $_POST ['desc_tp_ck'];
 
         $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-		$inserttp = $bdd->prepare("INSERT INTO tp (libelle_tp,  desc_tp, dte_deb, dte_fin, publier, Option_tp) VALUES (?,?,?,?,0,?)");
-	    $inserttp->execute(array($titre_tp,$desc_tp_ck,$dte_start, $dte_end,$select_option));
+        $inserttp = $bdd->prepare("INSERT INTO tp (libelle_tp,  desc_tp, dte_deb, dte_fin, publier, Option_tp) VALUES (?,?,?,?,1,?)");
+        $inserttp->execute(array($titre_tp,$desc_tp_ck,$dte_start, $dte_end,$select_option));
+        
     }
     else{
         $erreur = "Vous devez remplir tous les champs ";
     }
-
-
-
-
-
-
 }
 ?>
     <div class="row">
@@ -109,28 +104,8 @@ if  (isset($_POST['btn_creer'])){
                                     // Replace the <textarea id="editor1"> with a CKEditor 4
                                     // instance, using default configuration.
                                     CKEDITOR.replace( 'desc_tp_ck' );
-                                </script>
-                                    <h4>Création des étapes</h4>
-                                <div class="bloc_etape">
-                                    <label class="lab_etape">Nom de l'étape</label>
-                                    <input type="text" name="titre_etape" class="champs champs-titre-etape" id="titre_etape">
-                                    <label class="lab_etape" >Description de l'étape</label>
-                                    <textarea name="desc_etape_ck" id="desc_etape_ck" rows="10" cols="80"></textarea>
-                                    <script>
-                                        // Replace the <textarea id="editor1"> with a CKEditor 4
-                                        // instance, using default configuration.
-                                        CKEDITOR.replace( 'desc_etape_ck' );
-                                    </script>
-
-                                    <div class="etape_cree">
-                                    <!-- Mettre la req pour afficher les étapes deja creés  -->
-                                    </div>
-                                
-                                
-                                
-                                </div>
-                               
-                               <input type="submit" name="btn_creer" value="Créer le TP" class="btn-creer">
+                                </script>    
+                               <input type="submit" name="btn_creer" value="Creer le tp" class="btn-creer">
                                <div class="error creation">
                                    <?php
                                    if (isset($erreur))

@@ -76,9 +76,26 @@ if  (isset($_POST['ajouter_etape'])){
 }
     }
 
-        $inserttp = $bdd->prepare("SELECT * FROM etape WHERE fk_id_tp = $id");
-        $inserttp->execute(array($id));
-        $steps = $inserttp->fetchAll(PDO::FETCH_ASSOC);
+        $insertetape = $bdd->prepare("SELECT * FROM etape WHERE fk_id_tp = $id");
+        $insertetape->execute(array($id));
+        /*$tabletape = $insertetape->fetch();
+        $id_etape = $tabletape['id_etape'];
+        var_dump($id_etape);*/
+
+
+
+
+        
+
+       /* if (isset($_POST['edit_etape'])){
+            $updateetape = $bdd->prepare("UPDATE etape SET libelle_etape = ? ,  desc_etape = ?  WHERE fk_id_tp =  $id and id_tp = $id_etape");
+            $updateetape->execute(array($titre_etape, $desc_etape_ck, $id));
+
+        }
+        if (isset($_POST['save_etape'])){
+
+
+        }*/
     
 
 ?>
@@ -161,9 +178,9 @@ if  (isset($_POST['ajouter_etape'])){
                         <div class="bloc_etape" id="etape-test" disabled>
                             <form method="POST" action="">
                                 <label class="lab_etape">Nom de l'étape</label>
-                                <input type="text" name="titre_etape" class="champs champs-titre-etape">
+                                <input type="text" name="titre_etape" value="" class="champs champs-titre-etape">
                                 <label class="lab_etape">Description de l'étape</label>
-                                <textarea name="desc_etape_ck" id="desc_etape_ck" rows="10" cols="80"></textarea>
+                                <textarea name="desc_etape_ck" value="" id="desc_etape_ck" rows="10" cols="80"></textarea>
                                 <script>
                                     // Replace the <textarea id="editor1"> with a CKEditor 4
                                     // instance, using default configuration.
@@ -173,6 +190,32 @@ if  (isset($_POST['ajouter_etape'])){
                                     <!-- Mettre la req pour afficher les étapes deja creés  -->
                                 </div>
                                 <input type="submit" name="ajouter_etape" value="Ajouter" class="btn-creer">
+                                <input type="submit" name="save_etape" value="Save" class="btn-edit-etape">
+                                <?php 
+                                while($steps = $insertetape->fetch()){
+                
+                                    ?>  
+                                    <div class="etape_creer">
+                                    <span> <?= $steps['libelle_etape']?></span>
+                                    <span> <?= $steps['desc_etape']?></span>
+                                    <input type="submit" name="edit_etape" value="Edi" class="btn-edit-etape">
+                                    <input type="submit" name="supp_etape" value="Supp" class="btn-supp-etape">
+                                    <input type="hidden" name="id_etape" value="<?=$steps['id_etape']?>"></input>
+
+                                    </div> 
+
+                                     <?php 
+                                }
+
+                                    if (isset($_POST['supp_etape'])){
+                                        $id_etape = $_POST['id_etape'];
+                                        $delete_etape = $bdd->prepare("DELETE FROM etape WHERE fk_id_tp =  $id AND id_etape = $id_etape ");
+                                        $delete_etape->execute();
+                                       
+                                        }
+                                
+                                
+                                ?>
                             </form>
                         </div>
                         <div class="error creation">

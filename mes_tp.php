@@ -30,23 +30,21 @@ $bdd = new PDO('mysql:host=127.0.0.1;dbname=outils_geestion_tp_ppe', 'root', '')
                 <?php
 
                 $requser = $bdd->prepare("SELECT * FROM tp");
+                $requser->execute(array());
                     while ($infouser = $requser->fetch())
                     {
                         ?>
 
                     <div class="liste-tp">
                         <div class="tp">
-                        <span> <?php echo $infouser['libelle_tp']; ?> </span>
-                                <span><?php echo $infouser['note_tp']; ?>/20</span>
+                        <span> <?=$infouser['libelle_tp']; ?> </span> <br>
+                        <span> <?=$infouser['desc_tp']; ?> </span> <br>
+                        <span> <?=$infouser['dte_deb']; ?> </span>
+                        <span> <?=$infouser['dte_fin']; ?> </span>
+                       
                         </div>
                             
                     </div>
-
-
-
-
-
-
                         <?php
                     }
                     ?>

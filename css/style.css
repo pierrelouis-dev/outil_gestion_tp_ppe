@@ -249,3 +249,10 @@ h1{
     width: 50%;
     padding: 10px;
 }
+.mes_tp{
+	display: flex;
+	flex-flow: wrap;
+	justify-content: space-around;
+}
+/*MES TP ACCORDEON*/
+

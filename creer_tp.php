@@ -31,8 +31,8 @@ if  (isset($_POST['btn_creer'])  Or isset($_POST['btn_brouillon'])){
         $desc_tp_ck = $_POST ['desc_tp_ck'];
 
         $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $inserttp = $bdd->prepare("INSERT INTO tp (libelle_tp,  desc_tp, dte_deb, dte_fin, publier, Option_tp) VALUES (?,?,?,?,1,?)");
-        $inserttp->execute(array($titre_tp,$desc_tp_ck,$dte_start, $dte_end,$select_option));
+        $inserttp = $bdd->prepare("INSERT INTO tp (libelle_tp,  desc_tp, dte_deb, dte_fin, publier, Option_tp) VALUES (?,?,?,?,1,?,?)");
+        $inserttp->execute(array($titre_tp,$desc_tp_ck,$dte_start, $dte_end,$select_option,$select_promo));
         
         header('Location: edition.php?id='.$bdd->lastinsertid());
         
@@ -110,6 +110,7 @@ if  (isset($_POST['btn_creer'])  Or isset($_POST['btn_brouillon'])){
                                <input type="submit" name="btn_creer" value="Creer le tp" class="btn-creer">
                                <div class="error creation">
                                    <?php
+                                 
                                    if (isset($erreur))
                                    {
                                        echo $erreur;

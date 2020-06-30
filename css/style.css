@@ -153,16 +153,12 @@ h1{
 .container-body{
 	height: 100rem;
 }
-.liste-tp{
-
-
-}
-.mes_tp{
+/*.mes_tp{
 	padding-top: 5rem;
 	display: flex;
 	justify-content: space-around;
 	flex-wrap: wrap;
-}
+}*/
 .col-8.container-body{
 	padding: 0;
 }
@@ -201,7 +197,7 @@ h1{
 }
 .first_form{
 	display: flex;
-    height: 2rem;
+    height: 8rem;
     justify-content: space-between;
 }
 .date-form{
@@ -217,8 +213,110 @@ h1{
 #label_end:after{
 	content: url(img/calendar.png);
 }
+.champs-titre-etape{
+	width: 30%;
+	margin-left: 10px;
+	margin-bottom: 1rem;
+	display: flex;
 
-.container-tableau{
-	width: 100%;
-	height: 100%;
+}
+.bloc_etape{
+	border: solid 1px gray;
+}
+.champs {border-left: solid 5px #192a56;}
+.lab_etape{
+	margin-left: 10px;
+	margin-top: 2rem;
+}
+#cke_desc_etape_ck{
+	/*width: 65rem;*/
+}
+
+.btn-ajout-save{
+	display: flex;
+	justify-content: space-between;
+}
+
+.btn-creer{
+	margin: 1rem;
+    background-color: #ffab00;
+    color: white;
+    cursor: pointer;
+    padding: 10px;
+    text-align: center;
+    border: none;
+    display: inherit;
+    border-radius: 7px;
+    font-size: 1rem;
+
+    
+}
+
+.btn-creer-tp{
+	margin-top: 1rem;
+    background-color: #ffab00;
+    color: white;
+    cursor: pointer;
+    padding: 10px;
+    text-align: center;
+    border: none;
+    display: inherit;
+    border-radius: 7px;
+    font-size: 1rem;
+    
+}
+
+.btn-save{
+	margin-top: 1rem;
+    background-color: #009432;
+    color: white;
+    cursor: pointer;
+    padding: 10px;
+    text-align: center;
+    border: none;
+    display: inherit;
+    border-radius: 7px;
+    font-size: 1rem;
+    margin-bottom: 10px;
+}
+
+.btn-save-etapes{
+	background: url("../img/save.png") no-repeat;
+	width: 32px;
+	height: 32px;
+	border: none;
+	display: inherit;
+	margin-top: 1.5rem;
+	margin: 1rem;
+}
+
+.btn-edit-supp{
+	display: flex;
+	justify-content: space-between;
+}
+
+.btn-edit-etape{
+	background: url("../img/edit.png") no-repeat;
+	width: 32px;
+	height: 32px;
+	border: none;
+	display: inherit;
+	margin: 10px;
+}
+
+.btn-supp-etape{
+	background: url("../img/trash.png") no-repeat;
+	width: 32px;
+	height: 32px;
+	border: none;
+	display: inherit;
+	margin: 10px;
+}
+
+.titre-etape-visu{
+	margin-left: 10px;
+}
+
+.desc-etape-visu{
+	margin-left: 10px;
 }

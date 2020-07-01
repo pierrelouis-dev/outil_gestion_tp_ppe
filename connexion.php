@@ -53,13 +53,17 @@
                         $userexist_prof = $requser_prof->rowcount();
                         if($userexist_prof !=0)
                         {
-
+                    
                             $infouser_prof = $requser_prof ->fetch();
+                            if ($infouser_prof['statut_inscription'] ==1 ){
                             $_SESSION['id'] = $infouser_prof['id_prof'];
                             $_SESSION['login'] = $infouser_prof['login'];
                             $_SESSION['role'] = $infouser_prof['nom_role'];
                             header("Location: tp_en_cours.php");
+                            }
+                            else
 
+                            $erreur = "Votre inscription n'est pas encore validé par un prof";
                         } 
             }
         } else {

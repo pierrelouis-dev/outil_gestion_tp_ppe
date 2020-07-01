@@ -37,6 +37,14 @@
                 $_SESSION['id'] = $infouser['id_eleve'];
                 $_SESSION['login'] = $infouser['login'];
                 $_SESSION['role'] = $infouser['nom_role'];
+                //Mettre dans la session l'option
+                $id_eleve = $_SESSION['id'];
+                $req = $bdd->prepare("SELECT option_e, fk_id_promo FROM eleve WHERE id_eleve = :ideleve");
+                $req->bindParam('ideleve', $id_eleve);
+                $req->execute();
+                $user = $req ->fetch();
+                $_SESSION['option_e'] = $user['option_e'];
+                $_SESSION['fk_id_promo'] = $user['fk_id_promo'];
                 header("Location: mes_tp.php");
 
                 }

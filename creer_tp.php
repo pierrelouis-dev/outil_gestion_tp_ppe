@@ -10,6 +10,10 @@ $bdd = new PDO('mysql:host=127.0.0.1;dbname=outils_geestion_tp_ppe','root',''); 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="//cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
     <script src="../ckeditor.js"></script>
+<<<<<<< HEAD
+=======
+    <script src="https://kit.fontawesome.com/264bee4198.js" crossorigin="anonymous"></script>
+>>>>>>> ethan
 </head>
 <body>
 <?php
@@ -29,6 +33,7 @@ if  (isset($_POST['btn_creer'])  Or isset($_POST['btn_brouillon'])){
         $dte_start = $_POST ['dte_start'];
         $dte_end = $_POST ['dte_end'];
         $desc_tp_ck = $_POST ['desc_tp_ck'];
+<<<<<<< HEAD
         $publication = 0;
 
         $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -43,6 +48,8 @@ if  (isset($_POST['btn_creer'])  Or isset($_POST['btn_brouillon'])){
         $inserttp->bindParam('opt', $select_option);
 
         $inserttp->execute();
+=======
+>>>>>>> ethan
         
         header('Location: edition.php?id='.$bdd->lastinsertid());
         
@@ -50,6 +57,7 @@ if  (isset($_POST['btn_creer'])  Or isset($_POST['btn_brouillon'])){
     else{
         $erreur = "Vous devez remplir tous les champs ";
     }
+<<<<<<< HEAD
 
 }
 $req = "SELECT * FROM option_eleve";
@@ -60,6 +68,8 @@ $req = "SELECT * FROM promotion";
 $req = $bdd->query($req);
 $promotions = $req->fetchAll(PDO::FETCH_ASSOC);
 
+=======
+>>>>>>> ethan
 ?>
     <div class="row">
         <div class="col body-border">
@@ -143,7 +153,10 @@ $promotions = $req->fetchAll(PDO::FETCH_ASSOC);
                                     // instance, using default configuration.
                                     CKEDITOR.replace( 'desc_tp_ck' );
                                 </script>    
+<<<<<<< HEAD
                                <input type="submit" name="btn_creer" value="Creer le tp" class="btn-creer">
+=======
+>>>>>>> ethan
                                <div class="error creation">
                                    <?php
                                  

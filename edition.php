@@ -4,12 +4,20 @@ $bdd = new PDO('mysql:host=127.0.0.1;dbname=outils_geestion_tp_ppe','root',''); 
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+<<<<<<< HEAD
     <title>Edition d'un tp</title>
+=======
+    <title>Title</title>
+>>>>>>> ethan
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="//cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
     <script src="../ckeditor.js"></script>
+<<<<<<< HEAD
+=======
+    <script src="https://kit.fontawesome.com/264bee4198.js" crossorigin="anonymous"></script>
+>>>>>>> ethan
 </head>
 <body>
 <?php
@@ -61,6 +69,7 @@ if (isset($_POST['btn_save'])){
     } 
 }
 
+<<<<<<< HEAD
 $req = "SELECT * FROM option_eleve";
 
 $req = $bdd->query($req);
@@ -73,6 +82,8 @@ $promotions = $req->fetchAll(PDO::FETCH_ASSOC);
 
 
 
+=======
+>>>>>>> ethan
 
 /*ETAPES*/
 if  (isset($_POST['ajouter_etape'])){
@@ -85,8 +96,11 @@ if  (isset($_POST['ajouter_etape'])){
         $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $inserttp = $bdd->prepare("INSERT INTO etape (libelle_etape,  desc_etape, fk_id_tp) VALUES (?,?,?)");
         $inserttp->execute(array($titre_etape, $desc_etape_ck, $id));
+<<<<<<< HEAD
     }
 }
+=======
+>>>>>>> ethan
 
         $insertetape = $bdd->prepare("SELECT * FROM etape WHERE fk_id_tp = $id");
         $insertetape->execute(array($id));
@@ -94,6 +108,14 @@ if  (isset($_POST['ajouter_etape'])){
         $id_etape = $tabletape['id_etape'];
         var_dump($id_etape);*/
 
+<<<<<<< HEAD
+=======
+
+
+
+        
+
+>>>>>>> ethan
        /* if (isset($_POST['edit_etape'])){
             $updateetape = $bdd->prepare("UPDATE etape SET libelle_etape = ? ,  desc_etape = ?  WHERE fk_id_tp =  $id and id_tp = $id_etape");
             $updateetape->execute(array($titre_etape, $desc_etape_ck, $id));
@@ -101,6 +123,7 @@ if  (isset($_POST['ajouter_etape'])){
         }
         if (isset($_POST['save_etape'])){
 
+<<<<<<< HEAD
         }*/
 
 /**
@@ -139,23 +162,33 @@ if (isset($_POST['save_etape'])){
 
 
  }
+=======
+
+    
+>>>>>>> ethan
 
 ?>
 
     <div class="row">
     <div class="col body-border"></div>
     <div class="col-8 container-body">
+<<<<<<< HEAD
         <div class="topnav" id="myTopnav">
             <a href="mes_tp.php" class="active">TP EN COURS</a>
             <a href="creer_tp.php" class="">CREER UN TP</a>
             <a href="creer_tp.php" class="">ADMINISTRATION DES INSCRIPTIONS</a>
+=======
+>>>>>>> ethan
             <img class="img-user" src="img/user.png">
         </div>
         <div class="body ">
             <div class="header">
+<<<<<<< HEAD
                 <h3>EDITION D'UN TP</h3>
             </div>
             <span class="sous-titre-page">Interface d'édition</span>
+
+>>>>>>> ethan
             <!---Liste des TP-- -->
             <div class="interface-creation">
 
@@ -176,6 +209,7 @@ if (isset($_POST['save_etape'])){
                                         <label for="label_promo">Séléction de la promotion</label>
                                         <select name="select_promo" id="select_promo">
                                             <option value="">Promotions</option>
+<<<<<<< HEAD
 
                                             <?php
 
@@ -189,6 +223,8 @@ if (isset($_POST['save_etape'])){
                                                 <?php
                                             }
                                             ?>
+=======
+>>>>>>> ethan
                                         </select>
                                     </div>
                                     <!--INPUT option-->
@@ -196,6 +232,7 @@ if (isset($_POST['save_etape'])){
                                         <label for="label_option">Séléction de l'option</label>
                                         <select name="select_option" id="select_option">
                                             <option value="">Options</option>
+<<<<<<< HEAD
 
                                             <?php
 
@@ -210,6 +247,8 @@ if (isset($_POST['save_etape'])){
                                             }
                                             ?>
 
+=======
+>>>>>>> ethan
                                         </select>
                                     </div>
                                     <div class="date-form">
@@ -234,6 +273,7 @@ if (isset($_POST['save_etape'])){
                                 // instance, using default configuration.
                                 CKEDITOR.replace('desc_tp_ck');
                             </script>
+<<<<<<< HEAD
                             <input type="submit" name="btn_save" value="Save" class="btn-save">
                         </form>
 
@@ -251,6 +291,7 @@ if (isset($_POST['save_etape'])){
 
                                 </textarea>
 
+>>>>>>> ethan
                                 <script>
                                     // Replace the <textarea id="editor1"> with a CKEditor 4
                                     // instance, using default configuration.
@@ -259,6 +300,7 @@ if (isset($_POST['save_etape'])){
                                 <div class="etape_cree">
                                     <!-- Mettre la req pour afficher les étapes deja creés  -->
                                 </div>
+<<<<<<< HEAD
 
                                 <?php
 
@@ -295,6 +337,8 @@ if (isset($_POST['save_etape'])){
                                     </div> 
 
                                      <?php
+=======
+>>>>>>> ethan
                                 }
 
                                     if (isset($_POST['supp_etape'])){
@@ -306,9 +350,12 @@ if (isset($_POST['save_etape'])){
                                 
                                 
                                 ?>
+<<<<<<< HEAD
 
                         </div>
                         <div class="">
+=======
+>>>>>>> ethan
                             <?php if (isset($erreur)) { echo $erreur; } ?>
                         </div>
                     </div>

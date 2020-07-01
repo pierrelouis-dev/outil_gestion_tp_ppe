@@ -214,6 +214,7 @@ h1{
 	content: url(img/calendar.png);
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 .container-tableau{
 	width: 100%;
@@ -229,6 +230,17 @@ h1{
 }
 .bloc_etape{
 	border: solid 2px gray;
+=======
+.champs-titre-etape{
+	width: 30%;
+	margin-left: 10px;
+	margin-bottom: 1rem;
+	display: flex;
+
+}
+.bloc_etape{
+	border: solid 1px gray;
+>>>>>>> ethan
 }
 .champs {border-left: solid 5px #192a56;}
 .lab_etape{
@@ -238,8 +250,19 @@ h1{
 #cke_desc_etape_ck{
 	/*width: 65rem;*/
 }
+<<<<<<< HEAD
 .btn-creer{
 	margin-top: 1rem;
+=======
+
+.btn-ajout-save{
+	display: flex;
+	justify-content: space-between;
+}
+
+.btn-creer{
+	margin: 1rem;
+>>>>>>> ethan
     background-color: #ffab00;
     color: white;
     cursor: pointer;
@@ -249,6 +272,7 @@ h1{
     display: inherit;
     border-radius: 7px;
     font-size: 1rem;
+<<<<<<< HEAD
 }
 .etape_creer{
 	border: solid 2px gray;
@@ -264,3 +288,79 @@ h1{
 /*MES TP ACCORDEON*/
 
 >>>>>>> pierre-louis
+=======
+
+    
+}
+
+.btn-creer-tp{
+	margin-top: 1rem;
+    background-color: #ffab00;
+    color: white;
+    cursor: pointer;
+    padding: 10px;
+    text-align: center;
+    border: none;
+    display: inherit;
+    border-radius: 7px;
+    font-size: 1rem;
+    
+}
+
+.btn-save{
+	margin-top: 1rem;
+    background-color: #009432;
+    color: white;
+    cursor: pointer;
+    padding: 10px;
+    text-align: center;
+    border: none;
+    display: inherit;
+    border-radius: 7px;
+    font-size: 1rem;
+    margin-bottom: 10px;
+}
+
+.btn-save-etapes{
+	background: url("../img/save.png") no-repeat;
+	width: 32px;
+	height: 32px;
+	border: none;
+	display: inherit;
+	margin-top: 1.5rem;
+	margin: 1rem;
+}
+
+.btn-edit-supp{
+	display: flex;
+	justify-content: space-between;
+}
+
+.btn-edit-etape{
+	background: url("../img/edit.png") no-repeat;
+	width: 32px;
+	height: 32px;
+	border: none;
+	display: inherit;
+	margin: 10px;
+}
+
+.btn-supp-etape{
+	background: url("../img/trash.png") no-repeat;
+	width: 32px;
+	height: 32px;
+	border: none;
+	display: inherit;
+	margin: 10px;
+}
+
+.titre-etape-visu{
+	margin-left: 10px;
+}
+
+.desc-etape-bug p{
+	margin-left: 15px;
+	font-size: 1rem;
+	color: black;
+}
+>>>>>>> ethan

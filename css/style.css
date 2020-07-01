@@ -317,6 +317,8 @@ h1{
 	margin-left: 10px;
 }
 
-.desc-etape-visu{
-	margin-left: 10px;
+.desc-etape-bug p{
+	margin-left: 15px;
+	font-size: 1rem;
+	color: black;
 }

@@ -202,7 +202,7 @@ if  (isset($_POST['ajouter_etape'])){
                                     <hr>
                                     <div class="etape_creer">
                                     <span><h4 class="titre-etape-visu"> <?= $steps['libelle_etape']?></h4></span>
-                                    <span><h5 class="desc-etape-visu"> <?= $steps['desc_etape']?></h5></span>
+                                    <span class="desc-etape-bug"><p class="desc-etape-visu"> <?= $steps['desc_etape']?></p></span>
                                     <div class="btn-edit-supp">
                                     	<input type="submit" name="edit_etape" value="" class="btn-edit-etape">
                                     	<input type="submit" name="supp_etape" value="" class="btn-supp-etape">

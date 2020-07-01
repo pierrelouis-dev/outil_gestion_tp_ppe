@@ -4,7 +4,7 @@ $bdd = new PDO('mysql:host=127.0.0.1;dbname=outils_geestion_tp_ppe','root',''); 
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Edition d'un tp</title>
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -72,7 +72,7 @@ $req = $bdd->query($req);
 $promotions = $req->fetchAll(PDO::FETCH_ASSOC);
 
 
-var_dump($_REQUEST);
+
 
 /*ETAPES*/
 if  (isset($_POST['ajouter_etape'])){
@@ -110,7 +110,6 @@ if(isset($_REQUEST['edit_etape'])){
     if(isset($_REQUEST['id_etape'])) {
         $test = $_REQUEST['id_etape'];
 
-        var_dump($test);
         $req = "SELECT * FROM etape WHERE id_etape = :id";
         $req = $bdd->prepare($req);
         $req->bindParam('id', $test);
@@ -123,29 +122,40 @@ if(isset($_REQUEST['edit_etape'])){
     }
 }
 
-/**
- * Modification de l'etape selectionée
- 
-if(BOUTON SAVE APPUYE){
-    REQUETE UPDATE SQL EN FONCTION DE L'ID DE L ETAPE.
-        MESSAGES D'ERREUR SI PROBLEME
-    REDIRECTION POUR ENLEVER L ETAPE DE LA MODIFICATION ET RETOUR A L'AJOUT ( SUPPRIMER LES CHAMPS GET id_etape & edit_etape)
-}*/
+if (isset($_POST['save_etape'])){
+
+    $titre_etape = $_POST['titre_etape'];
+    $desc_etape_ck = $_POST['desc_etape_ck'];
+    $id_etape = $_REQUEST['id_etape'];
+    $id = $_REQUEST['id'];
+    $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $req = $bdd->prepare("UPDATE etape SET libelle_etape = :t_etape, desc_etape = :d_etape WHERE id_etape=:id_etape ");
+        $req->bindParam('t_etape', $titre_etape);
+        $req->bindParam('d_etape', $desc_etape_ck);
+        $req->bindParam('id_etape', $id_etape);
+        $req->execute();
+        header('Location: edition.php?id='.$id);
+
+
+
+ }
 
 ?>
 
     <div class="row">
     <div class="col body-border"></div>
     <div class="col-8 container-body">
-        <div class="topnav" id="myTopnav"><a href="mes_tp.php" class="active">MES TP</a>
+        <div class="topnav" id="myTopnav">
+            <a href="mes_tp.php" class="active">TP EN COURS</a>
             <a href="creer_tp.php" class="">CREER UN TP</a>
+            <a href="creer_tp.php" class="">ADMINISTRATION DES INSCRIPTIONS</a>
             <img class="img-user" src="img/user.png">
         </div>
         <div class="body ">
             <div class="header">
-                <h3>CREER UN TP</h3>
+                <h3>EDITION D'UN TP</h3>
             </div>
-            <span class="sous-titre-page">Interface de création</span>
+            <span class="sous-titre-page">Interface d'édition</span>
             <!---Liste des TP-- -->
             <div class="interface-creation">
 

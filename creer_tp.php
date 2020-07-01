@@ -33,7 +33,8 @@ if  (isset($_POST['btn_creer'])  Or isset($_POST['btn_brouillon'])){
 
         $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        $inserttp = $bdd->prepare("INSERT INTO tp (libelle_tp,  desc_tp, dte_deb, dte_fin, publier, Option_tp) VALUES (:lib, :desc, :dte_db, :dte_fn, :pub, :opt)");
+        $inserttp = $bdd->prepare("INSERT INTO tp (libelle_tp,  desc_tp, dte_deb, dte_fin, publier, Option_tp, fk_id_promotion) VALUES (:lib, :desc, :dte_db, :dte_fn, :pub, :opt, :promo)");
+        $inserttp->bindParam('promo', $select_promo);
         $inserttp->bindParam('lib', $titre_tp);
         $inserttp->bindParam('desc', $desc_tp_ck);
         $inserttp->bindParam('dte_db', $dte_start);

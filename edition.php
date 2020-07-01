@@ -61,6 +61,18 @@ if (isset($_POST['btn_save'])){
     } 
 }
 
+$req = "SELECT * FROM option_eleve";
+
+$req = $bdd->query($req);
+$options = $req->fetchAll(PDO::FETCH_ASSOC);
+
+$req = "SELECT * FROM promotion";
+
+$req = $bdd->query($req);
+$promotions = $req->fetchAll(PDO::FETCH_ASSOC);
+
+
+var_dump($_REQUEST);
 
 /*ETAPES*/
 if  (isset($_POST['ajouter_etape'])){
@@ -73,19 +85,14 @@ if  (isset($_POST['ajouter_etape'])){
         $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $inserttp = $bdd->prepare("INSERT INTO etape (libelle_etape,  desc_etape, fk_id_tp) VALUES (?,?,?)");
         $inserttp->execute(array($titre_etape, $desc_etape_ck, $id));
-}
     }
+}
 
         $insertetape = $bdd->prepare("SELECT * FROM etape WHERE fk_id_tp = $id");
         $insertetape->execute(array($id));
         /*$tabletape = $insertetape->fetch();
         $id_etape = $tabletape['id_etape'];
         var_dump($id_etape);*/
-
-
-
-
-        
 
        /* if (isset($_POST['edit_etape'])){
             $updateetape = $bdd->prepare("UPDATE etape SET libelle_etape = ? ,  desc_etape = ?  WHERE fk_id_tp =  $id and id_tp = $id_etape");
@@ -94,9 +101,36 @@ if  (isset($_POST['ajouter_etape'])){
         }
         if (isset($_POST['save_etape'])){
 
-
         }*/
-    
+
+/**
+ * Affichage des etapes lors de l'edition
+ */
+if(isset($_REQUEST['edit_etape'])){
+    if(isset($_REQUEST['id_etape'])) {
+        $test = $_REQUEST['id_etape'];
+
+        var_dump($test);
+        $req = "SELECT * FROM etape WHERE id_etape = :id";
+        $req = $bdd->prepare($req);
+        $req->bindParam('id', $test);
+        $req->execute();
+        $step_get = $req->fetch(PDO::FETCH_ASSOC);
+
+        if ($step_get) {
+            $erreur = "L'étape ne fonctionne pas";
+        }
+    }
+}
+
+/**
+ * Modification de l'etape selectionée
+ 
+if(BOUTON SAVE APPUYE){
+    REQUETE UPDATE SQL EN FONCTION DE L'ID DE L ETAPE.
+        MESSAGES D'ERREUR SI PROBLEME
+    REDIRECTION POUR ENLEVER L ETAPE DE LA MODIFICATION ET RETOUR A L'AJOUT ( SUPPRIMER LES CHAMPS GET id_etape & edit_etape)
+}*/
 
 ?>
 
@@ -132,10 +166,19 @@ if  (isset($_POST['ajouter_etape'])){
                                         <label for="label_promo">Séléction de la promotion</label>
                                         <select name="select_promo" id="select_promo">
                                             <option value="">Promotions</option>
-                                            <option value="sio_1"
-                                            <?=( $result[ 'Option_tp']==='sio_1' )? 'selected' : ''; ?>>Sio 1</option>
-                                            <option value="sio_2"
-                                            <?=( $result[ 'Option_tp']==='sio_2' )? 'selected' : ''; ?>>Sio 2</option>
+
+                                            <?php
+
+                                            foreach ($promotions as $promotion){
+                                                ?>
+
+                                                <option value="<?= $promotion['id_promo'] ?>"
+                                                    <?=( $result[ 'Option_tp']=== $result['fk_id_promotion'] )? 'selected' : ''; ?>
+                                                ><?= $promotion['libelle_promo'] ?></option>
+
+                                                <?php
+                                            }
+                                            ?>
                                         </select>
                                     </div>
                                     <!--INPUT option-->
@@ -143,10 +186,20 @@ if  (isset($_POST['ajouter_etape'])){
                                         <label for="label_option">Séléction de l'option</label>
                                         <select name="select_option" id="select_option">
                                             <option value="">Options</option>
-                                            <option value="slam"
-                                            <?=( $result[ 'Option_tp']==='slam' )? 'selected' : ''; ?>>SLAM</option>
-                                            <option value="sisr"
-                                            <?=( $result[ 'Option_tp']==='sisr' )? 'selected' : ''; ?>>SISR</option>
+
+                                            <?php
+
+                                            foreach ($options as $option){
+                                                ?>
+
+                                                <option value="<?= $option['id_option'] ?>"
+                                                    <?=( $result[ 'Option_tp']=== $result['Option_tp'] )? 'selected' : ''; ?>
+                                                ><?= $option['libelle_option'] ?></option>
+
+                                                <?php
+                                            }
+                                            ?>
+
                                         </select>
                                     </div>
                                     <div class="date-form">
@@ -178,9 +231,16 @@ if  (isset($_POST['ajouter_etape'])){
                         <div class="bloc_etape" id="etape-test" disabled>
                             <form method="POST" action="">
                                 <label class="lab_etape">Nom de l'étape</label>
-                                <input type="text" name="titre_etape" value="" class="champs champs-titre-etape">
+                                <!-- VALUE -->
+                                <input type="text" name="titre_etape" class="champs champs-titre-etape" value="<?= @$step_get['libelle_etape'] ?>">
+
                                 <label class="lab_etape">Description de l'étape</label>
-                                <textarea name="desc_etape_ck" value="" id="desc_etape_ck" rows="10" cols="80"></textarea>
+                                <textarea name="desc_etape_ck" value="" id="desc_etape_ck" rows="10" cols="80">
+
+                                    <?= @$step_get['desc_etape'] ?>
+
+                                </textarea>
+
                                 <script>
                                     // Replace the <textarea id="editor1"> with a CKEditor 4
                                     // instance, using default configuration.
@@ -189,22 +249,42 @@ if  (isset($_POST['ajouter_etape'])){
                                 <div class="etape_cree">
                                     <!-- Mettre la req pour afficher les étapes deja creés  -->
                                 </div>
-                                <input type="submit" name="ajouter_etape" value="Ajouter" class="btn-creer">
-                                <input type="submit" name="save_etape" value="Save" class="btn-edit-etape">
-                                <?php 
+
+                                <?php
+
+                                if(isset($_REQUEST['id_etape'])){
+                                    ?>
+
+                                    <input type="submit" name="save_etape" value="Save" class="btn-edit-etape">
+                                    <?php
+                                }else{
+                                    ?>
+                                    <input type="submit" name="ajouter_etape" value="Ajouter" class="btn-creer">
+                                    <?php
+                                }
+                                ?>
+                                </form>
+                                <?php
                                 while($steps = $insertetape->fetch()){
                 
                                     ?>  
                                     <div class="etape_creer">
                                     <span> <?= $steps['libelle_etape']?></span>
                                     <span> <?= $steps['desc_etape']?></span>
-                                    <input type="submit" name="edit_etape" value="Edi" class="btn-edit-etape">
-                                    <input type="submit" name="supp_etape" value="Supp" class="btn-supp-etape">
-                                    <input type="hidden" name="id_etape" value="<?=$steps['id_etape']?>"></input>
+                                        <form method="GET" action="">
+                                            <input type="hidden" name="id" value="<?= $_GET['id'] ?>">
+                                            <input type="hidden" name="id_etape" value="<?= $steps['id_etape'] ?>">
+                                            <input type="submit" name="edit_etape" value="Edi" class="btn-edit-etape">
+                                        </form>
+                                        <form method="POST" action="">
+                                            <input type="hidden" name="id_etape" value="<?= $steps['id_etape'] ?>">
+                                            <input type="submit" name="supp_etape" value="Supp" class="btn-supp-etape">
+                                        </form>
+
 
                                     </div> 
 
-                                     <?php 
+                                     <?php
                                 }
 
                                     if (isset($_POST['supp_etape'])){
@@ -216,9 +296,9 @@ if  (isset($_POST['ajouter_etape'])){
                                 
                                 
                                 ?>
-                            </form>
+
                         </div>
-                        <div class="error creation">
+                        <div class="">
                             <?php if (isset($erreur)) { echo $erreur; } ?>
                         </div>
                     </div>

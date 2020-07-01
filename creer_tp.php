@@ -29,10 +29,19 @@ if  (isset($_POST['btn_creer'])  Or isset($_POST['btn_brouillon'])){
         $dte_start = $_POST ['dte_start'];
         $dte_end = $_POST ['dte_end'];
         $desc_tp_ck = $_POST ['desc_tp_ck'];
+        $publication = 0;
 
         $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $inserttp = $bdd->prepare("INSERT INTO tp (libelle_tp,  desc_tp, dte_deb, dte_fin, publier, Option_tp) VALUES (?,?,?,?,1,?,?)");
-        $inserttp->execute(array($titre_tp,$desc_tp_ck,$dte_start, $dte_end,$select_option,$select_promo));
+
+        $inserttp = $bdd->prepare("INSERT INTO tp (libelle_tp,  desc_tp, dte_deb, dte_fin, publier, Option_tp) VALUES (:lib, :desc, :dte_db, :dte_fn, :pub, :opt)");
+        $inserttp->bindParam('lib', $titre_tp);
+        $inserttp->bindParam('desc', $desc_tp_ck);
+        $inserttp->bindParam('dte_db', $dte_start);
+        $inserttp->bindParam('dte_fn', $dte_end);
+        $inserttp->bindParam('pub', $publication);
+        $inserttp->bindParam('opt', $select_option);
+
+        $inserttp->execute();
         
         header('Location: edition.php?id='.$bdd->lastinsertid());
         
@@ -40,7 +49,16 @@ if  (isset($_POST['btn_creer'])  Or isset($_POST['btn_brouillon'])){
     else{
         $erreur = "Vous devez remplir tous les champs ";
     }
+
 }
+$req = "SELECT * FROM option_eleve";
+$req = $bdd->query($req); 
+$options = $req->fetchAll();
+
+$req = "SELECT * FROM promotion";
+$req = $bdd->query($req);
+$promotions = $req->fetchAll(PDO::FETCH_ASSOC);
+
 ?>
     <div class="row">
         <div class="col body-border">
@@ -75,8 +93,15 @@ if  (isset($_POST['btn_creer'])  Or isset($_POST['btn_brouillon'])){
                                       <label for="label_promo">Séléction de la promotion</label>
                                       <select name="select_promo" id="select_promo">
                                           <option value="">Promotions</option>
-                                          <option value="sio_1">Sio 1</option>
-                                          <option value="sio_2">Sio 2</option>
+                                          <?php
+                                          foreach ($promotions as $promotion){
+                                              ?>
+
+                                              <option value="<?= $promotion['id_promo'] ?>"><?= $promotion['libelle_promo'] ?></option>
+                                              
+                                              <?php
+                                          }
+                                          ?>
                                       </select>
                                     </div>
                                     <!--INPUT option-->
@@ -84,8 +109,18 @@ if  (isset($_POST['btn_creer'])  Or isset($_POST['btn_brouillon'])){
                                       <label for="label_option">Séléction de l'option</label>
                                       <select name="select_option" id="select_option">
                                           <option value="">Options</option>
-                                          <option value="slam">SLAM</option>
-                                          <option value="sisr">SISR</option>
+                                          <?php 
+                                          
+                                          foreach($options as $option){
+
+                                            ?>
+                                            <option value="<?= $option['id_option']?>"><?= $option['libelle_option']?></option>
+
+                                            <?php 
+                                          }
+                                        
+                                          ?>
+                                         
                                       </select>
                                      </div>
                                        <div class="date-form">

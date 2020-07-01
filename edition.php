@@ -10,6 +10,7 @@ $bdd = new PDO('mysql:host=127.0.0.1;dbname=outils_geestion_tp_ppe','root',''); 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="//cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
     <script src="../ckeditor.js"></script>
+    <script src="https://kit.fontawesome.com/264bee4198.js" crossorigin="anonymous"></script>
 </head>
 <body>
 <?php
@@ -70,8 +71,6 @@ $req = "SELECT * FROM promotion";
 
 $req = $bdd->query($req);
 $promotions = $req->fetchAll(PDO::FETCH_ASSOC);
-
-
 
 
 /*ETAPES*/
@@ -156,6 +155,7 @@ if (isset($_POST['save_etape'])){
                 <h3>EDITION D'UN TP</h3>
             </div>
             <span class="sous-titre-page">Interface d'édition</span>
+
             <!---Liste des TP-- -->
             <div class="interface-creation">
 
@@ -234,6 +234,7 @@ if (isset($_POST['save_etape'])){
                                 // instance, using default configuration.
                                 CKEDITOR.replace('desc_tp_ck');
                             </script>
+
                             <input type="submit" name="btn_save" value="Save" class="btn-save">
                         </form>
 
@@ -265,7 +266,7 @@ if (isset($_POST['save_etape'])){
                                 if(isset($_REQUEST['id_etape'])){
                                     ?>
 
-                                    <input type="submit" name="save_etape" value="Save" class="btn-edit-etape">
+                                    <input type="submit" name="save_etape" value="" class="btn-save-etapes">
                                     <?php
                                 }else{
                                     ?>
@@ -279,18 +280,19 @@ if (isset($_POST['save_etape'])){
                 
                                     ?>  
                                     <div class="etape_creer">
-                                    <span> <?= $steps['libelle_etape']?></span>
-                                    <span> <?= $steps['desc_etape']?></span>
+                                    <span> <h4 class="titre-etape-visu"> <?= $steps['libelle_etape']?></h4></span>
+                                    <span class="desc-etape-bug"> <?= $steps['desc_etape']?></span>
+                                    <div class="btn-edit-supp">
                                         <form method="GET" action="">
                                             <input type="hidden" name="id" value="<?= $_GET['id'] ?>">
                                             <input type="hidden" name="id_etape" value="<?= $steps['id_etape'] ?>">
-                                            <input type="submit" name="edit_etape" value="Edi" class="btn-edit-etape">
+                                            <input type="submit" name="edit_etape" value="" class="btn-edit-etape">
                                         </form>
                                         <form method="POST" action="">
                                             <input type="hidden" name="id_etape" value="<?= $steps['id_etape'] ?>">
-                                            <input type="submit" name="supp_etape" value="Supp" class="btn-supp-etape">
+                                            <input type="submit" name="supp_etape" value="" class="btn-supp-etape">
+                                    </div>
                                         </form>
-
 
                                     </div> 
 

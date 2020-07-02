@@ -132,7 +132,6 @@ h1{
 .tp{
 	border: solid #192a56 3px;
 	width: 30rem;
-	height: 6rem;
 }
 .nom-tp-note{
 	display: flex;
@@ -267,9 +266,8 @@ h1{
     font-size: 1rem;
 }
 .etape_creer{
-	border: solid 2px gray;
-    border-radius: 7px;
-    width: 50%;
+
+
     padding: 10px;
 }
 .mes_tp{
@@ -349,4 +347,26 @@ h1{
 	margin-left: 15px;
 	font-size: 1rem;
 	color: black;
+}
+/*PIERRE-LOUIS*/
+.info_tp{
+	
+}
+.titre_gras{
+	font-weight: bold;
+}
+
+
+.div_lib_esc{
+	text-align: center;
+}
+.div_flex{
+	display: flex;
+	justify-content: space-around;
+}
+.btn-accord{
+	width: 100%;
+	text-align: center;
+	padding: 0 !important;
+    border-radius: 0;
 }

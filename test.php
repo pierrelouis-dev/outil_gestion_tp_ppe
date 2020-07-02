@@ -8,7 +8,6 @@ $bdd = new PDO('mysql:host=127.0.0.1;dbname=outils_geestion_tp_ppe', 'root', '')
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="https://kit.fontawesome.com/264bee4198.js" crossorigin="anonymous"></script>
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 
@@ -67,44 +66,38 @@ $requser->execute();
                                         <span> <?= $infouser['dte_fin']; ?> </span>
                                     </div>
                                 </div>
-
+                                <span> <?= $infouser['fk_id_promotion']; ?> </span>
                                 <span><center>10/20</center></span>
                             </div>
-                            <p>
-                                        <button class="btn btn-primary btn-accord"><i style="text-align: center" class="fas fa-sort-down"></i></button>
-                                    </p>
+
                             <div class="etapes_tp">
-                                <div class="box">
-                                    <div class="bg-info">
+                                <?php
+                                    $req = "SELECT * FROM etape WHERE fk_id_tp = :id";
+                                    $req = $bdd->prepare($req);
+                                    $req->bindParam('id', $infouser['id_tp']);
+                                    $req->execute();
+                                    $steps = $req->fetchAll(PDO::FETCH_ASSOC);
 
-                                        <?php
-                                            $req = "SELECT * FROM etape WHERE fk_id_tp = :id";
-                                            $req = $bdd->prepare($req);
-                                            $req->bindParam('id', $infouser['id_tp']);
-                                            $req->execute();
-                                            $steps = $req->fetchAll(PDO::FETCH_ASSOC);
-
-                                            foreach ($steps as $step):
-                                                ?>
-
-                                                <form id="form-<?=$step['id_etape']?>" action="update_etape.php" method="get">
-
-                                                    <input type="hidden" name="id_eleve" value="<?= $_SESSION['id'] ?>">
-                                                    <input type="checkbox" onclick="update(<?= $step['id_etape'] ?>)" id="<?= $step['id_etape'] ?>" value="<?= $step['id_etape'] ?>" name="id_etape"> <span><?= $step['desc_etape']?></span>
-
-                                                </form>
-
-                                            <?php
-
-
-                                            endforeach;
-
-
-
+                                    foreach ($steps as $step):
                                         ?>
-                                    </div>
 
-                                </div>
+                                        <form id="form-<?=$step['id_etape']?>" action="update_etape.php" method="get">
+
+                                            <input type="hidden" name="id_eleve" value="<?= $_SESSION['id'] ?>">
+                                            <input type="checkbox" onclick="update(<?= $step['id_etape'] ?>)" id="<?= $step['id_etape'] ?>" value="<?= $step['id_etape'] ?>" name="id_etape"> <span><?= $step['desc_etape']?></span>
+
+                                        </form>
+
+                                    <?php
+
+
+                                    endforeach;
+
+
+
+                                ?>
+
+
                             </div>
 
                         </div>
@@ -130,18 +123,6 @@ $requser->execute();
         $('#'+id).attr("checked", "checked");
         $('#'+id).attr("disabled", "disabled");
     }
-
-    $('#toggle').click(function(){
-    $('#a').toggle();
-    $('#b').toggle(1000);
-    $('#c').toggle('slow');
-    $('#d').toggle('slow', function(){
-        console.log('Élément #d est caché/affiché');
-    });
-});
-$('button').click(function(){
-  $('.bg-info').toggle();
-});
 </script>
 
 <?php

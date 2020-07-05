@@ -37,6 +37,14 @@
                 $_SESSION['id'] = $infouser['id_eleve'];
                 $_SESSION['login'] = $infouser['login'];
                 $_SESSION['role'] = $infouser['nom_role'];
+                //Mettre dans la session l'option
+                $id_eleve = $_SESSION['id'];
+                $req = $bdd->prepare("SELECT fk_id_option, fk_id_promo FROM eleve WHERE id_eleve = :ideleve");
+                $req->bindParam('ideleve', $id_eleve);
+                $req->execute();
+                $user = $req ->fetch();
+                $_SESSION['fk_id_option'] = $user['fk_id_option'];
+                $_SESSION['fk_id_promo'] = $user['fk_id_promo'];
                 header("Location: mes_tp.php");
 
                 }
@@ -53,16 +61,21 @@
                         $userexist_prof = $requser_prof->rowcount();
                         if($userexist_prof !=0)
                         {
-
+                    
                             $infouser_prof = $requser_prof ->fetch();
+                            if ($infouser_prof['statut_inscription'] ==1 ){
                             $_SESSION['id'] = $infouser_prof['id_prof'];
                             $_SESSION['login'] = $infouser_prof['login'];
                             $_SESSION['role'] = $infouser_prof['nom_role'];
                             header("Location: tp_en_cours.php");
+                            }
+                            else
 
+                            $erreur = "Votre inscription n'est pas encore validé par un prof";
                         } 
             }
-        } else {
+        } 
+        else {
             $erreur = "Tous les champs doivent etre complétés!";
         }
 

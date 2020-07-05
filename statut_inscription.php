@@ -2,25 +2,20 @@
 <header>
 </header>
 <body>
-
-
-
-
 </body>
 </html>
 
-
+<h1>PAGE EN COURS DE DEV </h1>
 <?php
+
+
+
+
+
 $bdd = new PDO('mysql:host=127.0.0.1;dbname=outils_geestion_tp_ppe', 'root', '');
-
 $reponsebrut = $bdd->query('SELECT * FROM eleve WHERE statut_inscription =0');
-
-
-    if ($_SESSION["role"] == "eleve") {
-      header("Location: mes_tp.php");
-    }
-
 ?>
+
 <form method="POST" action="">
 <?php 
 while ($donneestrie = $reponsebrut->fetch())

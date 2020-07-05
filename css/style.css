@@ -1,5 +1,11 @@
-wbody{
+@import url('https://fonts.googleapis.com/css2?family=Lora&display=swap');
+
+a {
+	font-family: 'Lora', serif !important;
+}
+body{
 	background-color: #ebebeb;
+	font-family: 'Lora', serif !important;
 }
 .sujet-actu{
 	width:33rem;
@@ -132,7 +138,6 @@ h1{
 .tp{
 	border: solid #192a56 3px;
 	width: 30rem;
-	height: 6rem;
 }
 .nom-tp-note{
 	display: flex;
@@ -153,16 +158,12 @@ h1{
 .container-body{
 	height: 100rem;
 }
-.liste-tp{
-
-
-}
-.mes_tp{
+/*.mes_tp{
 	padding-top: 5rem;
 	display: flex;
 	justify-content: space-around;
 	flex-wrap: wrap;
-}
+}*/
 .col-8.container-body{
 	padding: 0;
 }
@@ -201,7 +202,7 @@ h1{
 }
 .first_form{
 	display: flex;
-    height: 2rem;
+    height: 8rem;
     justify-content: space-between;
 }
 .date-form{
@@ -216,4 +217,344 @@ h1{
 }
 #label_end:after{
 	content: url(img/calendar.png);
+}
+
+
+.container-tableau{
+	width: 100%;
+	height: 100%;
+}
+.champs-titre-etape{
+	width: 30%;
+	margin-left: 10px;
+	margin-bottom: 1rem;
+	display: flex;
+
+}
+.bloc_etape{
+	border: solid 2px gray;
+
+}
+.champs-titre-etape{
+	width: 30%;
+	margin-left: 10px;
+	margin-bottom: 1rem;
+	display: flex;
+
+}
+.bloc_etape{
+	border: solid 1px gray;
+}
+.champs {border-left: solid 5px #192a56;}
+.lab_etape{
+	margin-left: 10px;
+	margin-top: 2rem;
+}
+#cke_desc_etape_ck{
+	/*width: 65rem;*/
+}
+
+.btn-ajout-save{
+	display: flex;
+	justify-content: space-between;
+}
+
+.btn-creer{
+	margin: 1rem;
+    background-color: #ffab00;
+    color: white;
+    cursor: pointer;
+    padding: 10px;
+    text-align: center;
+    border: none;
+    display: inherit;
+    border-radius: 7px;
+    font-size: 1rem;
+}
+.etape_creer{
+
+
+    padding: 10px;
+}
+.mes_tp{
+	display: flex;
+	flex-flow: wrap;
+	justify-content: space-around;
+}
+/*MES TP ACCORDEON*/
+
+
+.btn-creer-tp{
+	margin-top: 1rem;
+    background-color: #ffab00;
+    color: white;
+    cursor: pointer;
+    padding: 10px;
+    text-align: center;
+    border: none;
+    display: inherit;
+    border-radius: 7px;
+    font-size: 1rem;
+    
+}
+
+.btn-save{
+	margin-top: 1rem;
+    background-color: #009432;
+    color: white;
+    cursor: pointer;
+    padding: 10px;
+    text-align: center;
+    border: none;
+    display: inherit;
+    border-radius: 7px;
+    font-size: 1rem;
+    margin-bottom: 10px;
+}
+
+.btn-save-etapes{
+	background: url("../img/save.png") no-repeat;
+	width: 32px;
+	height: 32px;
+	border: none;
+	display: inherit;
+	margin-top: 1.5rem;
+	margin: 1rem;
+}
+
+.btn-edit-supp{
+	display: flex;
+	justify-content: space-between;
+}
+
+.btn-edit-etape{
+	background: url("../img/edit.png") no-repeat;
+	width: 32px;
+	height: 32px;
+	border: none;
+	display: inherit;
+	margin: 10px;
+}
+
+.btn-supp-etape{
+	background: url("../img/trash.png") no-repeat;
+	width: 32px;
+	height: 32px;
+	border: none;
+	display: inherit;
+	margin: 10px;
+}
+
+.titre-etape-visu{
+	margin-left: 10px;
+}
+
+.desc-etape-bug p{
+	margin-left: 15px;
+	font-size: 1rem;
+	color: black;
+}
+/*PIERRE-LOUIS*/
+.titre_gras{
+	font-weight: bold;
+}
+
+.div_flex{
+	display: flex;
+	justify-content: space-around;
+}
+.btn-accord{
+	width: 100%;
+	text-align: center;
+	padding: 0 !important;
+	border-radius: 0 !important;
+}
+.tab{
+
+	border-bottom: solid 2px gray;
+}
+
+.margin_text{
+	margin-left: 17px;
+}
+
+.mes_tp .tp{
+	border: none;
+}
+
+.statut0,
+.statut1,
+.statut2{
+
+	display: none;
+}
+/*MES TP*/
+
+.sous-titre-div{
+	width: 100%;
+    height: 4rem;
+}
+
+.sous-titre-background{
+	height: 31px;
+    background-color: #eef7ff
+}
+
+.sous-titre-page {
+	border-left: solid 5px #192a56;
+	padding-left: 5px;
+	font-size: 22px;
+
+}
+
+.info_tp{
+	border: solid 1px #dcdde1;
+    border-bottom: none;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    background-color: #f5f6fa;
+}
+
+.div_lib_esc{
+	text-align: center;
+    background-color: #dcdde1;
+}
+
+.far.fa-clock.donner{
+	font-size: 22px;
+    margin-top: 10px;
+    color: green;
+}
+
+.far.fa-clock.rendre{
+	font-size: 22px;
+    margin-top: 10px;
+    color: red;
+}
+
+.div_date_deb{
+	text-align: center;
+}
+
+.div_date_fin{
+	text-align: center;
+}
+
+.box .bg-info{
+	display: none;
+    background-color: #f5f6fa !important;
+    padding: 1rem;
+    border: solid 1px #dcdde1;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.box{
+	background-color: #DFDFDF;
+	border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px
+}
+
+.titre_etape_accordion{
+	font-size: 18px;
+	font-weight: bold;
+}
+
+.desc_tape_accordion{
+	margin-left: 25px;
+}
+.btn-primary.btn-accord{
+	background-color: #192a56;
+	border-color: #192a56;
+}
+/*TP EN COURS*/
+
+.background-btn-menu{
+	background-color: #eef7ff;
+    padding: 3px;
+    border-radius: 2px;
+    width: 100%;
+}
+
+.btn-position-menu{
+	margin-left: 5px;
+}
+
+.statut.btn-publie{
+	background-color: #0d2463;
+    color: white;
+    width: 60px;
+    height: 30px;
+    text-align: center;
+    padding: 3px;
+    border-radius: 4px;
+    border: solid 1px #192a56;
+}
+
+.statut.btn-npublie{
+	background-color: #0d2463;
+    color: white;
+    width: 100px;
+    height: 30px;
+    text-align: center;
+    padding: 3px;
+    border-radius: 4px;
+    border: solid 1px #192a56;
+}
+
+.statut.btn-archive{
+	background-color: #0d2463;
+    color: white;
+    width: 80px;
+    height: 30px;
+    text-align: center;
+    padding: 3px;
+    border-radius: 4px;
+    border: solid 1px #192a56;
+}
+
+.statut.btn-publie:hover, .statut.btn-npublie:hover, .statut.btn-archive:hover {
+	background-color: #6a89cc;
+}
+
+.btn-active{
+	background-color: #f6b93b !important;
+	border: solid 1px black !important;
+
+}
+
+.libelle-desc-tp{
+	width: 100%;
+	text-align: center;
+	background-color: #dcdde1;
+}
+
+.tp_en_cours .tp{
+	background-color: #eeeff3;
+	border: solid 1px #dcdde1;
+	border-radius: 5px;
+}
+
+.content-tp-encours{
+	display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.content-btn-img{
+	display: flex;
+    margin: 10px;
+    justify-content: space-between;
+}
+
+.mes_tp.en_cours{
+	margin-top: 1rem;
+}
+
+.img-archive, .img-publier, .img-edit, .img-bin{
+	width: 32px;
+}
+
+.btn-archive, .btn-publier, .btn-edit, .btn-bin{
+	border: none;
 }
